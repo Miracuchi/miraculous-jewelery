@@ -1,0 +1,9 @@
+PATCH http://localhost:4000/ads/2
+Content-Type: application/json
+
+{
+  "title": "Cat Noir Miraculous",
+  "description": "Grant you the power of Destruction, that allow you to obliterate anything",
+  "owner": "Adrien Agreste",
+  "category": 
+}

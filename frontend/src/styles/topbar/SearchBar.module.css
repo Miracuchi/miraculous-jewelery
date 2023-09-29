@@ -1,0 +1,19 @@
+/* .inputSearch
+{
+    background-color: blue;
+    
+} */
+
+.searchTruc
+{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+}
+.inputSearchBar
+{
+    width: 40%;
+    margin-right: 10px;
+    height: 100%;
+}
