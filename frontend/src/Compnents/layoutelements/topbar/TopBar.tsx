@@ -18,6 +18,7 @@ function TopBar (): JSX.Element {
                 <SearchBar />
             </div>
             <Link href={'/ads/create'} className={styles.addAdButton}>Add an Ad</Link>
+            <Link href={'/ads/admin'} className={styles.addAdButton}>Administration</Link>
         </nav>
   )
 }

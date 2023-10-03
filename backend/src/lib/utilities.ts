@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable n/handle-callback-err */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import type AE from 'aggregate-error'
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import AE from 'aggregate-error'
 import { type ValidationError } from 'class-validator'
 import { type TypeORMError } from 'typeorm'
 
@@ -44,7 +45,7 @@ export function formatedErrors (err: AggregateError | TypeORMError) {
   }
 
   if (err.name === 'AggregateError') {
-    const aggregateError: any = err as AE<IError>
+    const aggregateError: any = err as AE<IError>;
     e.errors = aggregateError.errors
   }
 

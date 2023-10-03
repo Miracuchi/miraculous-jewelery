@@ -1,7 +1,8 @@
 import { In, type Repository } from 'typeorm'
 import { Ad } from '../entities/ad.entity'
 import datasource from '../db'
-import { type IAdForm } from '../types/ad'
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import { IAdForm } from '../types/ad'
 import { validate } from 'class-validator'
 import CategoryService from './category.service'
 import { aggregateErrors } from '../lib/utilities'

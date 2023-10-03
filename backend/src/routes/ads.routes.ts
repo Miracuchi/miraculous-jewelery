@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/consistent-type-imports */
 import { Router, type Request, type Response } from 'express'
 import { Ad } from '../entities/ad.entity'
 import { In } from 'typeorm'
 import AdsService from '../services/ads.service'
 import CategoryService from '../services/category.service'
-import { type IAdForm } from '../types/ad'
+import { IAdForm } from '../types/ad'
 import { formatedErrors } from '../lib/utilities'
 const router = Router()
 

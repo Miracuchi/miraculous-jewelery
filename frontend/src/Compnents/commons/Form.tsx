@@ -7,11 +7,17 @@ import { type Category } from '@/types/categories'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
+interface IError {
+  field: string | null
+  message: string
+}
+
 function Form ({ initialData }: FormEditOrCreate): React.JSX.Element {
   const router = useRouter()
   const [categoriesValue, setCategoriesValue] = useState<Category[]>([])
   const [formulaireData, setFormulaireData] = useState<IAdForm>({} as IAdForm)
   // asserssion pour typer
+  const [errors, setErrors] = useState<IError[]>([] as IError[])
 
   useEffect(() => {
     axiosInstance
@@ -76,24 +82,44 @@ function Form ({ initialData }: FormEditOrCreate): React.JSX.Element {
           console.log(data)
         })
       // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
-        .catch((err) => console.log(err))
+        .catch((err) => {
+          console.log(err)
+          setErrors(err.response.data?.errors)
+        })
     } else {
       axiosInstance
         .patch(`/ads/update/${initialData.id}`, formulaireData)
         .then(({ data }) => {
           router.push(`/categories/view/${data.category?.id}`)
         })
-        .catch((err) => { console.log(err) })
+        .catch((err) => {
+          console.log(err)
+          setErrors(err.response.data?.errors)
+        })
     }
+  }
+
+  const getError = (field: string) => {
+    let errorText = ''
+    if (errors.length) {
+      const error = errors.find((e) => e.field === field)
+      if (error) {
+        errorText = error.message
+      }
+    }
+
+    return errorText
   }
 
   return (
         <div>
           <form action="" onSubmit={handleSubmit}>
             <input type="text" placeholder="titre" name='title' onChange={handleChange} value={formulaireData.title}/>
+            <span>{getError('title')}</span>
             <input type="text" placeholder="description" name='description' onChange={handleChange} value={formulaireData.description}/>
             <input type="text" placeholder="owner" name='owner' onChange={handleChange} value={formulaireData.owner}/>
             <input type="number" placeholder="price" name='price' step='any' onChange={handleChange} value={formulaireData.price}/>
+            <span>{getError('price')}</span>
             <input type="text" placeholder="location" name='location' onChange={handleChange} value={formulaireData.location}/>
             <input type="text" placeholder="picture" name='picture' onChange={handleChange} value={formulaireData.picture}/>
             <select name="category" onChange={handleChange} value={formulaireData.category?.id}>
