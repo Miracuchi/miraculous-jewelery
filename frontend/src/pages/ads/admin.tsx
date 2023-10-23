@@ -76,6 +76,8 @@ function AdminAds (): React.JSX.Element {
                   <td>{formatAmount(ad.price)}</td>
                   <td>
                     <Link href={`/ads/edit/${ad.id}`}>Editer</Link>
+                    </td>
+                    <td>
                     <Link href={`/ads/delete/${ad.id}`}>Supprimer</Link>
                   </td>
                 </tr>
